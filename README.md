@@ -52,14 +52,17 @@ end
 If Newspaper is used, it can be written as follows.
 
 ```ruby
+# app/models/sign_up_notifier.rb
 class SignUpNotifier
   def call(payload)
     # do something
   end
 end
 
+# config/initializers/newspaper.rb
 Newspaper.subscribe(:user_create, SignUpNotifier.new)
 
+# app/controllers/users_controller.rb
 Newspaper.publish(:user_create, payload)
 ```
 
