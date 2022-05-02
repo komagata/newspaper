@@ -20,18 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-It can be used as an alternative to ActiveRecord callbacks and Observers. Subscribers are just Ruby objects, so they are easy to implement and test.
+It can be used as an alternative to ActiveRecord Callbacks and Observers. Subscribers are just Ruby objects, so they are easy to implement and test.
 
 Callbacks and Observers have the following problems
 
-- The more callbacks, the more complicated the class becomes.
-- It is difficult to understand when callbacks depend on each other.
-- Often implicitly don't want it to run.
+- There are often times when you don't want a Callback to be called. We don't want that to happen implicitly.
+- Easy to write multiple processes in one place. Easy to have dependencies on multiple processes.
 
 Newspaper solves the above problem by
 
-- By making the subscriber a ruby object, it is easy to divide the process into classes.
-- By explicitly publishing events, it is possible to avoid executing events when you do not want them to be executed.
+- Events are explicitly published.
+- Subscriber is easy to write as a class for each process
 
 Using ActiveRecord callbacks.
 
