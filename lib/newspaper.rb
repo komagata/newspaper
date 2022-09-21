@@ -2,6 +2,7 @@
 
 require_relative "newspaper/version"
 
+# namespace
 module Newspaper
   class Error < StandardError; end
 
@@ -11,12 +12,15 @@ module Newspaper
     attr_reader :event_bus
 
     def subscribe(event, subscriber)
-      @event_bus[event] = subscriber
+      @event_bus[event] ||= []
+      @event_bus[event] << subscriber
     end
 
     def publish(event, payload)
-      subscriber = @event_bus[event]
-      subscriber.call(payload)
+      @event_bus[event] ||= []
+      @event_bus[event].each do |subscriber|
+        subscriber.call(payload)
+      end
     end
 
     def clear(event)
