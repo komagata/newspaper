@@ -59,7 +59,7 @@ class SignUpNotifier
 end
 
 # config/initializers/newspaper.rb
-Rails.configuration.to_prepare do
+Rails.configuration.after_initialize do
   Newspaper.subscribe(:user_create, SignUpNotifier.new)
 end
 
